@@ -29,3 +29,14 @@ document.querySelectorAll('[data-question]').forEach(button => button.addEventLi
  document.querySelectorAll('[data-scenario]').forEach(item => item.setAttribute('aria-pressed', 'false'));
  // Native anchor navigation also works without JavaScript.
 }));
+
+// Demonstration only: no account state, storage, analytics or bank action.
+const demoStep = document.querySelector('[data-demo-step]');
+demoStep?.addEventListener('click', () => {
+ const marked = demoStep.getAttribute('aria-pressed') !== 'true';
+ demoStep.setAttribute('aria-pressed', String(marked));
+ demoStep.innerHTML = marked ? 'Отмечено в примере ✓' : 'Отметить в примере<span aria-hidden="true">↗</span>';
+ document.querySelector('.plan-demo-status').textContent = marked
+  ? 'Так выглядит выполненный шаг. Деньги не переводились; отметка исчезнет при обновлении страницы.'
+  : 'Демонстрация отметки. Перевод не выполняется.';
+});
